@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default function handler(_: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json({text: "Hello!"})
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+    const { text } = req.query
+    res.status(200).json({text})
 }

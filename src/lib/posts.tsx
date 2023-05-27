@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html'
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const postsDirectory = path.join(process.cwd(), 'src/posts');
 
 export function getSortedPostsData() {
   // Get file names under /posts
@@ -61,7 +61,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, id + ".md");
 
   const fileContents = fs.readFileSync(fullPath, "utf-8");

@@ -1,25 +1,26 @@
-import Head from 'next/head';
+'use client'
+
 import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
+import utilStyles from '../../styles/utils.module.css';
 import Link from 'next/link';
 import Date from '../components/date';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, Metadata } from 'next';
 
-export default function Home({
+export const metadata: Metadata = {
+    title: siteTitle
+}
+
+export default function HomePage({
   allPostsData
 }: {
   allPostsData: {
     date: string,
     title: string,
-    id: number
+    id: string
   }[]
 }) {
   return (
     <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
       <section className={utilStyles.headingMd}>
         <p>Me gusta el chocolate, tengo una fabrica de chocolate</p>
         <p>
@@ -46,14 +47,4 @@ export default function Home({
       </section>
     </Layout>
   )
-}
-
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData
-    }
-  }
 }
